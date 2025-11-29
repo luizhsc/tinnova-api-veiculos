@@ -1,7 +1,8 @@
 package com.api.veiculo.repository
 
+import com.api.veiculo.dto.VeiculosReportResponse
 import com.api.veiculo.enums.VeiculoStatus
-import com.api.veiculo.model.VeiculoModel
+import com.api.veiculo.entity.Veiculo
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
@@ -9,9 +10,9 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import java.math.BigDecimal
 
-interface VeiculoRepository : JpaRepository<VeiculoModel, Long> {
+interface VeiculoRepository : JpaRepository<Veiculo, Long> {
 
-    fun findByStatus(status: VeiculoStatus, pageable: Pageable): Page<VeiculoModel>
+    fun findByStatus(status: VeiculoStatus, pageable: Pageable): Page<Veiculo>
 
     @Query(
         """
@@ -26,7 +27,7 @@ interface VeiculoRepository : JpaRepository<VeiculoModel, Long> {
         @Param("ano") ano: String?,
         @Param("cor") cor: String?,
         pageable: Pageable
-    ): Page<VeiculoModel>
+    ): Page<Veiculo>
 
     @Query(
         """
@@ -39,6 +40,14 @@ interface VeiculoRepository : JpaRepository<VeiculoModel, Long> {
         @Param("valorMinimo") valorMinimo: BigDecimal?,
         @Param("valorMaximo") valorMaximo: BigDecimal?,
         pageable: Pageable
-    ): Page<VeiculoModel>
+    ): Page<Veiculo>
+
+    @Query("""
+        SELECT new com.api.veiculo.dto.VeiculosReportResponse(v.marca, COUNT(v))
+        FROM tbl_veiculo v
+        GROUP BY v.marca
+        ORDER BY COUNT(v) DESC
+    """)
+    fun reportByMarca(): List<VeiculosReportResponse>
 
 }

@@ -2,10 +2,10 @@ package com.api.veiculo.mapper
 
 import com.api.veiculo.controller.request.VeiculoRequest
 import com.api.veiculo.enums.VeiculoStatus
-import com.api.veiculo.model.VeiculoModel
+import com.api.veiculo.entity.Veiculo
 import com.mercadolivro.controller.response.VeiculoReponse
 
-fun VeiculoModel.toResponse(): VeiculoReponse {
+fun Veiculo.toResponse(): VeiculoReponse {
     return VeiculoReponse(
         id = this.id,
         nome = this.nome,
@@ -18,8 +18,8 @@ fun VeiculoModel.toResponse(): VeiculoReponse {
     )
 }
 
-fun VeiculoRequest.toModel(id: Long? = null): VeiculoModel {
-    return VeiculoModel(
+fun VeiculoRequest.toModel(id: Long? = null): Veiculo {
+    return Veiculo(
         id = id,
         nome = this.nome!!,
         marca = this.marca!!,

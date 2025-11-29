@@ -1,11 +1,12 @@
 package com.api.veiculo.service
 
 import com.api.veiculo.controller.request.VeiculoRequest
+import com.api.veiculo.dto.VeiculosReportResponse
 import com.api.veiculo.enums.VeiculoStatus
 import com.api.veiculo.exceptions.NotFoundException
 import com.api.veiculo.mapper.toModel
 import com.api.veiculo.mapper.toResponse
-import com.api.veiculo.model.VeiculoModel
+import com.api.veiculo.entity.Veiculo
 import com.api.veiculo.repository.VeiculoRepository
 import com.mercadolivro.controller.response.VeiculoReponse
 import org.springframework.data.domain.Page
@@ -35,7 +36,7 @@ class VeiculoService(
         return veiculoRepository.save(request.toModel()).toResponse()
     }
 
-    fun findById(id: Long): VeiculoModel {
+    fun findById(id: Long): Veiculo {
         return veiculoRepository.findById(id)
             .orElseThrow { NotFoundException("404", "Veiculo id $id not found") }
     }
@@ -57,6 +58,10 @@ class VeiculoService(
         val veiculo = findById(id)
         veiculo.status = VeiculoStatus.DELETADO
         veiculoRepository.save(veiculo)
+    }
+
+    fun generateReportByMarca(): List<VeiculosReportResponse> {
+        return veiculoRepository.reportByMarca()
     }
 
 }

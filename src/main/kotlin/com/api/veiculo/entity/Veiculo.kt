@@ -1,11 +1,11 @@
-package com.api.veiculo.model
+package com.api.veiculo.entity
 
 import com.api.veiculo.enums.VeiculoStatus
 import jakarta.persistence.*
 import java.math.BigDecimal
 
 @Entity(name = "tbl_veiculo")
-data class VeiculoModel(
+data class Veiculo(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null,
 
     @Column var nome: String,
