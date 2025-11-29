@@ -7,11 +7,12 @@ import java.math.BigDecimal
 
 @Service
 class DollarExchangeService(
-    private val awesomeClient: AwesomeApiClient
+    private val awesomeClient: AwesomeApiClient,
 ) {
 
     @Cacheable(cacheNames = ["usdToBrl"], key = "'rate'")
     fun getUsdFromBrl(): BigDecimal {
-        return awesomeClient.getUsdFromBrl().bid
+        val response = awesomeClient.getUsdFromBrl()
+        return response.getValue("USDBRL").bid!!.toBigDecimal()
     }
 }

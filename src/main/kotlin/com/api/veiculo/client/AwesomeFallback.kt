@@ -1,8 +1,8 @@
 package com.api.veiculo.client
 
 import com.api.veiculo.dto.AwesomeApiResponseDto
+import com.api.veiculo.dto.Data
 import org.springframework.stereotype.Component
-import java.math.BigDecimal
 
 @Component
 class AwesomeFallback(
@@ -10,10 +10,9 @@ class AwesomeFallback(
 ) : AwesomeApiClient {
 
     override fun getUsdFromBrl(): AwesomeApiResponseDto {
-        val response = frankFurterClient.getRate("USD", "BRL").rates["BRL"]
-
-        return AwesomeApiResponseDto(
-            bid = response?.toBigDecimal() ?: BigDecimal.ZERO
+        val response = frankFurterClient.getRate("USD", "BRL")
+        return mapOf(
+            "USDBRL" to Data(bid = response.rates["BRL"].toString()),
         )
     }
 }
