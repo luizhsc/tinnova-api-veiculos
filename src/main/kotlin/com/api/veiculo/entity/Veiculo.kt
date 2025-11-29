@@ -16,7 +16,8 @@ data class Veiculo(
 
     @Column var ano: String,
 
-    @Column var placa: String,
+    @Column(unique = true, nullable = false)
+    var placa: String,
 
     @Column var valorMinimo: BigDecimal,
 
