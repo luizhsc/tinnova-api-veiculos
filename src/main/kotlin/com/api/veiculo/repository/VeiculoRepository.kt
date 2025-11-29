@@ -1,6 +1,6 @@
 package com.api.veiculo.repository
 
-import com.api.veiculo.dto.VeiculosReportResponse
+import com.api.veiculo.dto.VeiculosReportResponseDto
 import com.api.veiculo.enums.VeiculoStatus
 import com.api.veiculo.entity.Veiculo
 import org.springframework.data.domain.Page
@@ -48,6 +48,6 @@ interface VeiculoRepository : JpaRepository<Veiculo, Long> {
         GROUP BY v.marca
         ORDER BY COUNT(v) DESC
     """)
-    fun reportByMarca(): List<VeiculosReportResponse>
+    fun reportByMarca(): List<VeiculosReportResponseDto>
 
 }

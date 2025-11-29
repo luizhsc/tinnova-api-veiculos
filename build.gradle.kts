@@ -9,6 +9,7 @@ plugins {
 group = "com.api"
 version = "0.0.1-SNAPSHOT"
 description = "Avaliação Tinnova"
+extra["springCloudVersion"] = "2023.0.3"
 
 java {
 	toolchain {
@@ -32,6 +33,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("org.springframework.boot:spring-boot-starter-cache")
 
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
@@ -41,6 +45,13 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
 }
 
+
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+    }
+}
 
 kotlin {
 	compilerOptions {

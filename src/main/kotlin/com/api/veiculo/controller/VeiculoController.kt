@@ -1,7 +1,7 @@
 package com.api.veiculo.controller
 
 import com.api.veiculo.controller.request.VeiculoRequest
-import com.api.veiculo.dto.VeiculosReportResponse
+import com.api.veiculo.dto.VeiculosReportResponseDto
 import com.api.veiculo.mapper.toResponse
 import com.api.veiculo.service.VeiculoService
 import com.mercadolivro.controller.response.VeiculoReponse
@@ -70,7 +70,7 @@ class VeiculoController(
 
     @GetMapping("/por-marca")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    fun reportByMarca(): List<VeiculosReportResponse> {
+    fun reportByMarca(): List<VeiculosReportResponseDto> {
         return veiculoService.generateReportByMarca()
     }
 

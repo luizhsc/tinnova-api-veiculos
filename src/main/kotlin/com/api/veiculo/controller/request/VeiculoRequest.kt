@@ -8,6 +8,6 @@ data class VeiculoRequest(
     val cor: String?,
     val ano: String?,
     val placa: String?,
-    val valorMaximo: BigDecimal?,
-    val valorMinimo: BigDecimal?
+    var valorMaximo: BigDecimal?,
+    var valorMinimo: BigDecimal?
 )

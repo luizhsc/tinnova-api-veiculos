@@ -1,7 +1,8 @@
 package com.api.veiculo.service
 
+import com.api.veiculo.client.AwesomeApiClient
 import com.api.veiculo.controller.request.VeiculoRequest
-import com.api.veiculo.dto.VeiculosReportResponse
+import com.api.veiculo.dto.VeiculosReportResponseDto
 import com.api.veiculo.enums.VeiculoStatus
 import com.api.veiculo.exceptions.NotFoundException
 import com.api.veiculo.mapper.toModel
@@ -16,7 +17,8 @@ import java.math.BigDecimal
 
 @Service
 class VeiculoService(
-    private val veiculoRepository: VeiculoRepository
+    private val veiculoRepository: VeiculoRepository,
+    private val dollarExchangeService: DollarExchangeService
 ) {
 
     fun findAllByDetails(marca: String?, ano: String?, cor: String?, pageable: Pageable): Page<VeiculoReponse> {
@@ -33,6 +35,11 @@ class VeiculoService(
     }
 
     fun create(request: VeiculoRequest): VeiculoReponse {
+        val dolar = dollarExchangeService.getUsdFromBrl()
+
+        request.valorMinimo = dolar.multiply(request.valorMinimo)
+        request.valorMaximo = dolar.multiply(request.valorMaximo)
+
         return veiculoRepository.save(request.toModel()).toResponse()
     }
 
@@ -60,8 +67,11 @@ class VeiculoService(
         veiculoRepository.save(veiculo)
     }
 
-    fun generateReportByMarca(): List<VeiculosReportResponse> {
+    fun generateReportByMarca(): List<VeiculosReportResponseDto> {
         return veiculoRepository.reportByMarca()
     }
+
+    operator fun BigDecimal.times(other: Double): BigDecimal =
+        this.multiply(other.toBigDecimal())
 
 }
