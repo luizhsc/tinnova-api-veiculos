@@ -7,9 +7,19 @@ import org.springframework.http.ResponseEntity
 import org.springframework.security.core.AuthenticationException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.context.request.WebRequest
 
 @ControllerAdvice
 class ControllerAdvice {
+
+    @ExceptionHandler(NotFoundException::class)
+    fun handleNotFoundException(ex: NotFoundException): ResponseEntity<ErrorResponseDto> {
+        val erro = ErrorResponseDto(
+            code = ex.errorCode,
+            message = ex.message,
+        )
+        return ResponseEntity(erro, HttpStatus.NOT_FOUND)
+    }
 
     @ExceptionHandler(DataIntegrityViolationException::class)
     fun handleDataIntegrityViolationException(ex: DataIntegrityViolationException): ResponseEntity<ErrorResponseDto> {
