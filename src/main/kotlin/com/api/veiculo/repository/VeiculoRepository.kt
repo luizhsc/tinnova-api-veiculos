@@ -43,7 +43,7 @@ interface VeiculoRepository : JpaRepository<Veiculo, Long> {
     ): Page<Veiculo>
 
     @Query("""
-        SELECT new com.api.veiculo.dto.VeiculosReportResponse(v.marca, COUNT(v))
+        SELECT new com.api.veiculo.dto.VeiculosReportResponseDto(v.marca, COUNT(v))
         FROM tbl_veiculo v
         GROUP BY v.marca
         ORDER BY COUNT(v) DESC

@@ -1,13 +1,12 @@
 package com.api.veiculo.service
 
-import com.api.veiculo.client.AwesomeApiClient
 import com.api.veiculo.controller.request.VeiculoRequest
 import com.api.veiculo.dto.VeiculosReportResponseDto
+import com.api.veiculo.entity.Veiculo
 import com.api.veiculo.enums.VeiculoStatus
 import com.api.veiculo.exceptions.NotFoundException
 import com.api.veiculo.mapper.toModel
 import com.api.veiculo.mapper.toResponse
-import com.api.veiculo.entity.Veiculo
 import com.api.veiculo.repository.VeiculoRepository
 import com.mercadolivro.controller.response.VeiculoReponse
 import org.springframework.data.domain.Page
@@ -70,8 +69,5 @@ class VeiculoService(
     fun generateReportByMarca(): List<VeiculosReportResponseDto> {
         return veiculoRepository.reportByMarca()
     }
-
-    operator fun BigDecimal.times(other: Double): BigDecimal =
-        this.multiply(other.toBigDecimal())
 
 }
