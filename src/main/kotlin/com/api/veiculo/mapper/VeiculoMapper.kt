@@ -1,8 +1,8 @@
 package com.api.veiculo.mapper
 
 import com.api.veiculo.controller.request.VeiculoRequest
-import com.api.veiculo.enums.VeiculoStatus
 import com.api.veiculo.entity.Veiculo
+import com.api.veiculo.enums.VeiculoStatus
 import com.mercadolivro.controller.response.VeiculoReponse
 
 fun Veiculo.toResponse(): VeiculoReponse {

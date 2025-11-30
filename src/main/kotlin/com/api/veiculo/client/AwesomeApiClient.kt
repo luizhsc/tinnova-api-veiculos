@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping
 
 @FeignClient(
     name = "awesomeApiClient",
-    url = "https://economia.awesomeapi.com.br",
-    fallback = AwesomeFallback::class
+    url = "https://economia.awesomeapi.com.br"
 )
 interface AwesomeApiClient {
 

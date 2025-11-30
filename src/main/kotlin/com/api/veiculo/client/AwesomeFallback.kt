@@ -10,7 +10,7 @@ class AwesomeFallback(
 ) : AwesomeApiClient {
 
     override fun getUsdFromBrl(): AwesomeApiResponseDto {
-        val response = frankFurterClient.getRate("USD", "BRL")
+        val response = frankFurterClient.getRate()
         return mapOf(
             "USDBRL" to Data(bid = response.rates["BRL"].toString()),
         )

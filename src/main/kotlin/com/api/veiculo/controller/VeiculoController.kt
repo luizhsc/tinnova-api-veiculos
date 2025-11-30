@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import io.swagger.v3.oas.annotations.tags.Tag
+import jakarta.validation.Valid
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
@@ -99,7 +100,7 @@ class VeiculoController(
     )
     fun create(
         @Parameter(description = "JSON com os dados do veículo a ser criado")
-        @RequestBody request: VeiculoRequest
+        @Valid @RequestBody request: VeiculoRequest
     ): VeiculoReponse =
         veiculoService.create(request)
 
