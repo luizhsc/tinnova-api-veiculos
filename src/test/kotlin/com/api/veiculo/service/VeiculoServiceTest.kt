@@ -77,11 +77,11 @@ class VeiculoServiceTest {
 
         val salvo = Veiculo(
             id = 1L,
-            nome = request.nome,
-            marca = request.marca,
-            cor = request.cor,
-            ano = request.ano,
-            placa = request.placa,
+            nome = request.nome!!,
+            marca = request.marca!!,
+            cor = request.cor!!,
+            ano = request.ano!!,
+            placa = request.placa!!,
             valorMinimo = BigDecimal(50),
             valorMaximo = BigDecimal(100),
             status = VeiculoStatus.ATIVO

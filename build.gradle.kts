@@ -22,32 +22,53 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    // Spring Boot Core
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.flywaydb:flyway-core:10.16.0")
-    implementation("org.flywaydb:flyway-mysql:10.16.0")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-cache")
-    implementation(platform("org.springframework.cloud:spring-cloud-dependencies:2023.0.3"))
-    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 
+    // Kotlin
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+    // Flyway
+    implementation("org.flywaydb:flyway-core:10.16.0")
+    implementation("org.flywaydb:flyway-mysql:10.16.0")
+
+    // JWT
+    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
-    runtimeOnly("com.mysql:mysql-connector-j")
 
+    // Spring Cloud & OpenFeign
+    implementation(platform("org.springframework.cloud:spring-cloud-dependencies:2023.0.3"))
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+
+    // Swagger
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+
+    // Banco de dados
+    runtimeOnly("com.mysql:mysql-connector-j")
+    runtimeOnly("com.h2database:h2")
+
+    // Testes Unitários / Integração
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.mockk:mockk:1.13.8")
     testImplementation("org.mockito:mockito-core:5.12.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
     testImplementation("org.mockito:mockito-inline:5.2.0")
+
+    // Cucumber
+    implementation("io.cucumber:cucumber-java:7.32.0")
+    testImplementation("io.cucumber:cucumber-junit:7.32.0")
+    testImplementation("junit:junit:4.13.2")
+    implementation("io.cucumber:cucumber-guice:7.27.0")
+
 }
 
 kotlin {
