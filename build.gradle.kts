@@ -64,10 +64,13 @@ dependencies {
     testImplementation("org.mockito:mockito-inline:5.2.0")
 
     // Cucumber
-    implementation("io.cucumber:cucumber-java:7.32.0")
-    testImplementation("io.cucumber:cucumber-junit:7.32.0")
-    testImplementation("junit:junit:4.13.2")
-    implementation("io.cucumber:cucumber-guice:7.27.0")
+    testImplementation("io.cucumber:cucumber-junit:7.14.0")
+    testImplementation("io.cucumber:cucumber-java:7.14.0")
+    testImplementation("io.cucumber:cucumber-spring:7.14.0")
+    testImplementation("io.cucumber:cucumber-junit-platform-engine:7.14.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+    testImplementation("org.junit.platform:junit-platform-suite:1.10.0")
+    testImplementation("com.h2database:h2")
 
 }
 
