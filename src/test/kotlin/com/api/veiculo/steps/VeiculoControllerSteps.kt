@@ -1,33 +1,16 @@
 package com.api.veiculo.steps
 
 import com.api.veiculo.context.TokenContext
-import com.api.veiculo.entity.Veiculo
-import com.api.veiculo.enums.VeiculoStatus
-import com.api.veiculo.service.VeiculoService
-import com.mercadolivro.controller.response.VeiculoReponse
-import io.cucumber.java.pt.*
-import org.json.JSONObject
+import io.cucumber.java.pt.Dado
+import io.cucumber.java.pt.Então
+import io.cucumber.java.pt.Quando
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.mockito.ArgumentMatchers.any
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.`when`
-import org.mockito.kotlin.anyOrNull
-import org.mockito.kotlin.whenever
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.data.domain.Page
-import org.springframework.data.domain.PageImpl
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.MvcResult
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
-import java.math.BigDecimal
 
-@SpringBootTest
-@AutoConfigureMockMvc
 class VeiculoControllerSteps {
 
     @Autowired
