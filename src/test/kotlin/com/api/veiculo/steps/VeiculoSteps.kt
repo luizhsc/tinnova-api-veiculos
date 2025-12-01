@@ -47,12 +47,13 @@ class VeiculoSteps {
     fun validarToken() {
         assertNotNull(authResponse.token)
     }
-    @Dado("um veiculo com nome {string} e placa {string}")
+
+    @Dado("um veiculo request com placa {string} e nome {string}")
     fun criarVeiculo(placa: String, nome: String) {
         veiculoRequest = buildVeiculoRequest(nome, placa)
     }
 
-    @Quando("criar um veículo com placa {string} e nome {string}")
+    @Quando("salvar veículo")
     fun salvarVeiculo() {
         veiculoResponse = veiculoService.create(veiculoRequest)
         assertNotNull(veiculoResponse)
